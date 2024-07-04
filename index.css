@@ -1,0 +1,50 @@
+/* styles.css */
+main {
+  background-color: #a530dc;
+  
+}
+header {
+  background-color: #f2c94c;
+  font-family: 'Abel', regular;
+  font-size: 42px;
+  color: black;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.btn{
+  background-color: #f2c94c;
+  font-family: 'Abel', regular;
+  color: black;
+}
+
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+main {
+  padding: 20px;
+  text-align: center;
+  flex: 1;
+  min-height: 100vh;
+}
+
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+img{
+border: 50px 20px 20px 20px;
+border-color: black;
+
+}
