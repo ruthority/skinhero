@@ -1,29 +1,31 @@
 import React, { useState } from 'react';
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
-import { auth } from "../../firebase"; // Adjust path if needed
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from "../../firebase"; // Adjust path if needed  
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import "../../index.css";
 
 export default function AuthLoginPage() {
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate(); // Initialize useNavigate  
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(''); // State to manage error messages  
 
     const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
+        setShowPassword(prev => !prev);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            // Redirect to dashboard on successful login
+            // Redirect to dashboard on successful login  
             console.log("User logged in:", userCredential.user);
-            navigate('.././Dashboard'); // Change the path to your dashboard route
+            navigate('/auth/Dashboard/Dashboard'); // Make sure the path is correct for your application  
         } catch (error) {
-            console.error("Error logging in:", error);
+            console.error("Error logging in:", error.message);
+            setErrorMessage(error.message); // Store error message in state  
         }
     };
 
@@ -33,6 +35,7 @@ export default function AuthLoginPage() {
                 <h1 className="header-title">skinhero</h1>
             </header>
             <h1 className="auth-title">Login</h1>
+            {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Display error messages */}
             <form className="auth-form" onSubmit={handleSubmit}>
                 <div className="input-container auth-input-container">
                     <FaUser className="auth-icon" />
@@ -42,6 +45,7 @@ export default function AuthLoginPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="auth-input"
+                        required // Make this field required  
                     />
                 </div>
                 <div className="input-container auth-input-container">
@@ -52,6 +56,7 @@ export default function AuthLoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className="auth-input"
+                        required // Make this field required  
                     />
                     <button
                         type="button"

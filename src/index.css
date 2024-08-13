@@ -59,8 +59,7 @@ body {
   cursor: pointer;
 }
 
-.submit-button,
-.google-button {
+.submit-button {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -92,7 +91,7 @@ body {
   align-items: center;
 }
 
-.header {
+.home-header {
   background-color: #F2C94C; /* Header background color */
   width: 100%;
   padding: 10px 20px; /* Smaller padding for regular header */
@@ -176,12 +175,7 @@ body {
   margin-bottom: 20px;
   font-family: 'Inter', sans-serif;
 }
-
-.main-image {
-  width: 600px; 
-  height: 450px;
-  border: 50px solid black; /* Stroke */
-}
+ 
 
 /* Search Container */
 .search-container {
@@ -208,6 +202,17 @@ body {
   cursor: pointer;
   font-size: 24px;
 }
+
+.main-image {  
+  
+  height: auto; /* Maintain aspect ratio */   
+  object-fit: cover; /* Cover the container nicely */  
+  transition: opacity 0.5s ease-in-out; /* Smooth transition effect */  
+  width: 600px; 
+  height: 450px;
+  border: 50px solid black; /* Stroke */
+}
+
 
 /* Auth Page Styles */
 .auth-container {
@@ -330,102 +335,698 @@ submit-button {
   text-align: center;
   margin-top: 10px;
 }
-.dashboard-container {
-  position: relative;
-  width: 100%; /* Full width of the container */
-  height: auto; /* Adjust based on content */
-  background: #F5F5F5;
-  border: 2px solid rgba(0, 0, 0, 0.43);
-  padding-top: 66px; /* Offset for top content */
-}
+/*Signup styles end */
 
-.header {
-  display: flex;
+/*Dashboard styles begin*/
+
+.dashboard-container {  
+  position: relative; /* Allow absolute positioning within */  
+  padding: 20px; /* spacing */  
+}  
+
+.dashboard-header {  
+  display: flex; /* Align items in a row */  
+  align-items: center; /* Center vertically */  
+  margin-bottom: 50px; /* Space below header */ 
+  background-color: #F5F5F5; 
+  padding: 20px;  
+  justify-content: center;  
+  border-radius: 8px;  
+}  
+
+.user-avatar {  
+  width: 50px; /* Adjust based on your design */  
+  height: 60px; /* Adjust based on your design */  
+  border-radius: 50%; /* Circular avatar */  
+  background-size: cover; /* Ensure background image covers the div */  
+  margin-right: 10px; /* Space to the greeting */  
+}  
+
+.greeting {  
+  font-family: 'Inter', sans-serif;  
+  font-size: 24px; /* Adjust based on design */  
+  font-weight: 600;  
+  color: #000;  
+}  
+
+.doorbell-icon {  
+  width: 30px; /* Adjust based on your design */  
+  height: 30px; /* Adjust based on your design */  
+  background-size: cover;  
+  margin-left: auto; /* Push to the end of header */  
+}  
+
+.button-container {  
+  display: flex; /* Align buttons in a row */  
+  flex-direction: column; /* Stacking buttons vertically */  
+  gap: 15px; /* Space between buttons */  
   align-items: center;
-  position: absolute;
-  width: 100%;
-  padding: 20px; /* Adjust for spacing */
+
+}  
+
+.button {  
+  display: flex; /* Flex layout for button */  
+  width: 600px;
+  align-items: center; /* Center content vertically */  
+  justify-content: center; /* Center content horizontally */  
+  padding: 12px 16px; /* Padding around the button */  
+  background: #F2F2F2; /* Background color of button */  
+  border-radius: 20px; /* Rounded corners */  
+  text-decoration: none; /* Remove link underline */  
+  color: #000; /* Text color */  
+  transition: background 0.2s; /* Add transition effect */  
+  text-align: center; /* Ensure text is center-aligned */  
+}  
+
+.button span {  
+  flex-grow: 1; /* Allows text to take available space */  
+  text-align: center; /* Center text */  
 }
 
-.greeting {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 64px;
-  line-height: 77px;
-  color: #000000;
-  margin-left: 320px; /* Adjust based on design */
+.button:hover {  
+  background: #e0e0e0; /* Darker background on hover */  
+}  
+
+.icon {  
+  width: 24px; /* Fixed size for icon */  
+  height: 24px; /* Fixed size for icon */  
+  background-size: cover; /* Icon background */  
+  margin-left: 10px; /* Space between text and icon */  
+}
+.icon-diagnosis {  
+  width: 100px; /* Set the size of the icon */  
+  height: 100px; /* Set the size of the icon */  
+  background-image: url('./results.jpg'); /* Path to Diagnosis icon */  
+  background-size: cover; /* Ensure the icon covers the div */  
+  margin-left: 10px; /* Space between text and icon */  
+}  
+
+.icon-consultant {  
+  width: 100px; /* Set the size of the icon */  
+  height: 100px; /* Set the size of the icon */  
+  background-image: url('./Doctorconsultation.png'); /* Path to Consultant icon */  
+  background-size: cover; /* Ensure the icon covers the div */  
+  margin-left: 10px; /* Space between text and icon */  
+}  
+
+.icon-history {  
+  width: 100px; /* Set the size of the icon */  
+  height: 100px; /* Set the size of the icon */  
+  background-image: url('./medicaldocument.png'); /* Path to History icon */  
+  background-size: cover; /* Ensure the icon covers the div */  
+  margin-left: 10px; /* Space between text and icon */  
 }
 
-.user-avatar {
-  width: 127px;
-  height: 119px;
-  background: #D9D9D9; /* Placeholder for avatar */
-  margin-left: 20px; /* Adjust as needed */
+/* Dashboard styles end*/
+
+/* Diagnosis Page Styles begin*/  
+.diagnosis-container {  
+  background-color: #9B51E0; /* Matches the rest of the pages */  
+  color: white;  
+  padding: 20px;  
+  min-height: 100vh; /* Ensure it covers full height */  
+}  
+
+.header {  
+  background-color: #F5F5F5; /* Same header color as the dashboard */  
+  padding: 20px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  border-radius: 8px;  
+}  
+
+.diagnosis-title {  
+  font-family: 'Abel', sans-serif;  
+  font-size: 30px;  
+  font-weight: bold;  
+  color: black; /* Title color */  
+}  
+.diagnosis-icon{
+  margin-left: 450px;
+  height: 300px;
+}
+.assessment-title {  
+  font-size: 24px;  
+  margin-bottom: 20px; /* Adds space below the title */  
+  text-align: center;
+} 
+ 
+/* Diagnosis styles end */
+
+/*Consultation styles begin */
+
+.consultation-page-container {  
+  background-color: #9B51E0; /* Purple background to match the Diagnosis page */  
+  color: white;  
+  padding: 20px;  
+  min-height: 100vh; /* Full height */  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center; /* Center content horizontally */  
+  justify-content: center; /* Center content vertically */  
+}  
+
+.header {  
+  background-color: #F5F5F5; /* Same header color as the dashboard */  
+  padding: 20px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  border-radius: 8px; 
+  width: 1300px;
+ }
+
+.consultation-page-title {  
+  font-family: 'Abel', sans-serif;  
+  font-size: 30px;  
+  font-weight: bold;  
+  color: black; /* Title color */  
+}  
+
+.consultation-content {  
+  display: flex;  
+  flex-direction: column; /* Stack items vertically */  
+  align-items: center; /* Centers items horizontally */  
+  justify-content: center; /* Centers items vertically */  
+  text-align: center; /* Ensures text is centered */  
+  margin-top: 20px; /* Adds space above content */  
+}  
+
+.consultation-page-description {  
+  font-size: 1rem;  
+  color: #ddd; /* A lighter grey for the description text */  
+  margin-bottom: 20px;  
+}  
+
+.consultation-booking-form {  
+  margin-top: 20px;  
+}  
+
+.consultation-form-title {  
+  font-size: 1.5rem;  
+  color: white; /* Adjust title color */  
+  margin-bottom: 15px;  
+}  
+
+.consultation-form-label {  
+  display: block;  
+  margin-bottom: 5px;  
+  color: #eee; /* Adjust according to your theme */  
+}  
+
+.consultation-form-input,  
+.consultation-form-textarea {  
+  width: 100%;  
+  padding: 10px;  
+  border: 1px solid #ced4da;  
+  border-radius: 4px;  
+  margin-bottom: 15px;  
+  transition: border-color 0.3s;  
+}  
+
+.consultation-form-input:focus,  
+.consultation-form-textarea:focus {  
+  border-color: #fff; /* Change border color on focus */  
+}  
+
+.consultation-submit-button {  
+  background-color: #f5f5f5; /* Light gray background */  
+  color: #333; /* Text color */  
+  padding: 10px 15px;  
+  border: 1px solid #ccc;  
+  border-radius: 4px;  
+  cursor: pointer;  
+  transition: background-color 0.3s, transform 0.2s;  
+}  
+
+.consultation-submit-button:hover {  
+  background-color: #e0e0e0; /* Darker gray on hover */  
+  transform: scale(1.05);  
+}
+/*Consultation styles end*/
+
+/*Acne assessment styles */
+
+.quiz-acne-page {  
+  padding: 20px;  
+  text-align: center;  
+}  
+
+.acne-selection {  
+  display: grid;               /* Use grid to create 2 rows and 3 columns */  
+  grid-template-columns: repeat(3, 1fr); /* 3 equal columns */  
+  grid-gap: 16px;             /* Space between the items */  
+  margin-top: 20px;  
+}  
+
+.acne-item {  
+  width: 100%;                /* Full width of the grid cell */  
+  height: 350px;             /* Set a fixed height */  
+  background-size: cover;    /* Cover the entire area */  
+  cursor: pointer;           /* Cursor indicates it's clickable */  
+  position: relative;        /* Position relative for label */  
+  border: 2px solid black; /* Transparent border */  
+  transition: border-color 0.3s; /* Smooth transition for active state */  
+  border-radius: 5px;
+}  
+
+.acne-item.active {  
+  border-color: #007bff;     /* Change border color for selected items */  
+}  
+
+.acne-label {  
+  position: absolute;         /* Absolutely position the label within the item */  
+  bottom: 10px;              /* Position at the bottom */  
+  left: 10px;                
+  color: white;              /* White text color for contrast */  
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */  
+  padding: 5px;  
+  border-radius: 3px;       /* Rounded corners */  
+}  
+
+.submit-button {  
+  margin-top: 20px;  
+  padding: 10px 20px;  
+  font-size: 23px;  
+  background-color: F2C94C; /* Button color */  
+  color: rgb(0, 0, 0);              /* Text color */  
+  border: none;              /* No border */  
+  border-radius: 30px;       /* Rounded corners */  
+  cursor: pointer;           /* Pointer cursor */  
+  transition: background-color 0.3s; /* Smooth background color transition */ 
+  width: 200px; 
+}  
+
+.submit-button:hover {  
+  background-color: F2C94C; 
 }
 
-.doorbell-icon {
-  width: 97px;
-  height: 69px;
-  background: url('path/to/doorbell-icon.png'); /* Adjust the path */
-  margin-left: auto; /* Align to the right */
-}
+/*Acne assessment styles end*/
 
-.button-container {
-  display: flex;
-  flex-direction: column;
+/*Hyperpigmentation styles begin*/
+.hyperpigmentation-header {  
+  background-color: #F5F5F5; /* Same header color as the dashboard */  
+  padding: 20px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  border-radius: 8px;  
+  color: #000;
+  width: 90%;
+}  
+
+.select-text {  
+  text-align: center;  
+  font-weight: 700;  
+  font-size: 24px; /* Adjusted font size */  
+  margin-bottom: 20px;  
+}  
+.quiz-hyperpigmentation-page {  
+  padding: 20px;  
+  text-align: center;  
+}  
+
+.hyperpigmentation-selection {  
+  display: grid;               /* Use grid to create 1 row and 2 columns */  
+  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */  
+  grid-gap: 10px;             /* Space between the items */  
+  margin-top: 20px;  
+  margin-bottom: 150px;
+  margin-left: 300px;
+}  
+
+.hyperpigmentation-item {  
+  width: 300px;                /* Full width of the grid cell */  
+  height: 350px;             /* Set a fixed height */  
+  background-size: cover;    /* Cover the entire area */  
+  cursor: pointer;           /* Cursor indicates it's clickable */  
+  position: relative;        /* Position relative for label */  
+  border: 2px solid black;  /* Transparent border */  
+  transition: border-color 0.3s; /* Smooth transition for active state */  
+  border-radius: 5px;  
+}  
+
+.hyperpigmentation-item.active {  
+  border-color: #007bff;     /* Change border color for selected items */  
+}  
+
+.hyperpigmentation-label {  
+  position: absolute;         /* Absolutely position the label within the item */  
+  bottom: 10px;              /* Position at the bottom */  
+  left: 10px;                
+  color: white;              /* White text color for contrast */  
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */  
+  padding: 5px;  
+  border-radius: 3px;       /* Rounded corners */  
+}  
+
+.hyperpigmentation-submit-button {  
+  margin-top: 20px;  
+  padding: 10px 20px;  
+  font-size: 23px;  
+  background-color: #F2C94C; /* Button color */  
+  color: rgb(0, 0, 0);              /* Text color */  
+  border: none;              /* No border */  
+  border-radius: 30px;       /* Rounded corners */  
+  cursor: pointer;           /* Pointer cursor */  
+  transition: background-color 0.3s; /* Smooth background color transition */  
+  width: 200px;   
+}  
+
+.hyperpigmentation-submit-button:hover {  
+  background-color: #F2C94C;   
+} 
+ 
+/*Hyperpigmentation styles end*/
+
+ /* Skin type styles begin */  
+
+.custom-header-st {  
+  background-color: #F5F5F5;  
+  padding: 20px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  border-radius: 8px;  
+  color: #000;
+  width: 90%;  
+}  
+
+.skin-test-container {  
+  display: flex;            /* Use flexbox to center content */  
+  flex-direction: column;  /* Stack children vertically */  
+  align-items: center;     /* Center horizontally */  
+  justify-content: center; /* Center vertically */  
+  min-height: 100vh;      /* Full viewport height */  
+  padding: 20px;          /* Add some padding */  
+}  
+
+.response-button {  
+  padding: 10px 20px;  
+  margin: 5px;  
+  border: none;  
+  border-radius: 5px;  
+  background-color: #f0f0f0;  
+  cursor: pointer;  
+  border-radius: 30px;  
+  width: 130px; 
+}  
+
+.response-button.selected {  
+  background-color: #007bff;  
+  color: white; /* Change text color for visibility */  
+}  
+
+.button-group {  
+  display: flex;  
+  gap: 10px; /* Space between buttons */  
+  justify-content: center; /* Center buttons in the group */ 
+ 
+}  
+
+.submit-button-container {  
+  display: flex;  
+  justify-content: center;  
+  margin-top: 20px;  
+}  
+
+.submit-button-st {  
+  padding: 10px 20px;  
+  font-size: 23px;  
+  background-color: #F2C94C;  
+  color: rgb(0, 0, 0);  
+  border: none;  
+  border-radius: 30px;  
+  cursor: pointer;  
+  transition: background-color 0.3s;  
+  width: 200px;  
+}  
+
+.submit-button-st:hover {  
+  background-color: #F2C94C;  
+}
+/* Skin type styles end */  
+
+/*Skintyperesult styles begin*/
+
+.result-wrapper {  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  justify-content: center;  
+  max-width: 600px;  
+  margin: 2rem auto;  
+}  
+
+.st-result-header {  
+  background-color: #F5F5F5;  
+  padding: 20px;  
+  display: flex;  
+  justify-content: center;  
+  border-radius: 8px;  
+  color: #000;
+  width: 200%;  
+  margin-bottom: 30px;
+}  
+ 
+
+.result-container {  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  justify-content: center;  
+  padding: 1.5rem;  
+  border: 1px solid #ccc;  
+  border-radius: 8px;  
+  background-color: #f9f9f9;  
+  text-align: center;  
+  width: 90%; /* Ensuring consistent width with header */  
+  
+}  
+
+.skin-type {  
+  font-size: 1.5rem;  
+  font-weight: bold;  
+  color: black; /* Bootstrap primary color */  
+  margin: 1rem 0; 
+   
+}  
+
+.description {  
+  font-size: 1rem;  
+  color: #666;  
+}  
+
+.user-selections {  
+  font-size: 0.9rem;  
+  color: #444;  
+  font-style: italic;  
+  margin-top: 1rem;  
+}  
+
+
+  .description,  
+  .user-selections {  
+      font-size: 0.875rem;  
+  }  
+
+  
+  .submit-button-container {  
+    display: flex;  
+    justify-content: center;  
+    margin-top: 20px;  
+  }  
+  
+  /*Skintyperesult styles end*/
+ 
+  /* HyperpigmentationResult styles begin */  
+
+  .hyperpigmentation-result-page {  
+    display: flex;  
+    flex-direction: column;  
+    align-items: center;  
+    justify-content: center;  
+    max-width: 600px;  
+    margin: 2rem auto;  
+  }  
+
+  .hyperpigmentation-result-header{  
+    background-color: #F5F5F5;  
+    padding: 20px;  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+    border-radius: 8px;  
+    color: #000;
+    width: 190%;  
+  } 
+
+  .result-container2{
+  margin-top: 10%;
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  justify-content: center;  
+  padding: 1.5rem;  
+  border: 1px solid #ccc;  
+  border-radius: 8px;  
+  background-color: #f9f9f9;  
+  text-align: center;  
+  width: 90%; /* Ensuring consistent width with header */ 
+  color:#000;
+  }
+  .hyperpigmentation-type {  
+    font-size: 1.5rem;  
+    font-weight: bold;  
+    color: black;  
+    margin: 1rem 0;  
+  }  
+  
+  .hyper-description {  
+    font-size: 1rem;  
+    color: #666;  
+  }  
+  
+  .user-selections-hyper {  
+    font-size: 0.9rem;  
+    color: #444;  
+    font-style: italic;  
+    margin-top: 1rem;  
+  }  
+  
+   /* HyperpigmentationResult styles end */ 
+  
+/* Results Page Styles begin */  
+.results-container {  
+  background-color: #9B51E0; /* Matches the rest of the pages */  
+  color: white;  
+  padding: 20px;  
+  min-height: 100vh; /* Ensure it covers full height */  
+}  
+
+.results-header {  
+  background-color: #F5F5F5; /* Same header color as the dashboard */  
+  padding: 20px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  border-radius: 8px;  
+  width: 90%;
+  color: #000;
+  margin-left: 4%;
+}  
+
+.results-title {  
+  font-family: 'Abel', sans-serif;  
+  font-size: 30px;  
+  font-weight: bold;  
+  color: white; /* Title color */  
+  margin-bottom: 20px; /* Adds space below the title */  
+  text-align: center;
+  font-size: 24px;  
+  margin-bottom: 20px; /* Adds space below the title */  
+}  
+.results-icon{
+  margin-left: 32%;
+  height: 300px;
+  justify-content: center;  
+}
+results-button-container {  
+  display: flex; /* Align buttons in a row */  
+  flex-direction: column; /* Stacking buttons vertically */  
+  gap: 15px; /* Space between buttons */  
   align-items: center;
-  position: absolute;
-  width: 100%; /* Adjust based on design */
-  left: 0;
-  top: 500px; /* Adjust based on design */
-}
-
-.action-button {
-  display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 12px 16px;
-  gap: 10px;
-  background: #F2F2F2;
-  border-radius: 20px;
-  margin: 10px 0; /* Space between buttons */
-  width: 1355px; /* Adjust based on design */
-}
+  
 
-.start-diagnosis,
-.speak-consultant,
-.go-to-history {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 40px;
-  line-height: 48px;
-  color: #000000;
-  margin-top: 20px; /* Space above the texts */
-}
+}  
 
-.medical-document {
-  position: absolute;
-  width: 535px;
-  height: 239px;
-  background: url('path/to/medical-document.png'); /* Adjust the path */
-  left: 1596px; /* Adjust based on design */
-  top: 1249px; /* Adjust based on design */
-}
+.results-button {  
+  display: flex; /* Flex layout for button */  
+  width: 600px;
+  height: 70px;
+  align-items: center; /* Center content vertically */  
+  justify-content: center; /* Center content horizontally */  
+  padding: 12px 16px; /* Padding around the button */  
+  background: #F2F2F2; /* Background color of button */  
+  border-radius: 50px; /* Rounded corners */  
+  text-decoration: none; /* Remove link underline */  
+  color: #000; /* Text color */  
+  transition: background 0.2s; /* Add transition effect */  
+  text-align: center; /* Ensure text is center-aligned */  
+  margin-bottom: 4%;
+  margin-left:27%
+}  
 
-.doctor-consultation {
-  position: absolute;
-  width: 299px;
-  height: 229px;
-  background: url('path/to/doctor-consultation.png'); /* Adjust the path */
-  left: 1714px; /* Adjust based on design */
-  top: 904px; /* Adjust based on design */
-}
+/* Results Page Styles end */ 
 
-.patient-card {
-  position: absolute;
-  width: 240px;
-  height: 220px;
-  background: url('path/to/patient-card.png'); /* Adjust the path */
-  left: 1773px; /* Adjust based on design */
-  top: 540px; /* Adjust based on design */
+/*Acne Results Styles begin*/
+.acne-result-page {  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  justify-content: center;  
+  max-width: 600px;  
+  margin: 2rem auto;  
+}  
+
+.acne-result-header {  
+  background-color: #F5F5F5;  
+  padding: 20px;  
+  border-radius: 8px;  
+  color: #000;  
+  width: 190%;  
+  text-align: center;
+}  
+
+.acne-result-container {  
+  padding: 1.5rem;  
+  margin-top: 20px;
+  border: 1px solid #ccc;  
+  border-radius: 8px;  
+  background-color: #f9f9f9;  
+  text-align: center;  
+  width: 90%;  
+  color: #000;  
+}  
+
+.acne-type {  
+  font-size: 1.5rem;  
+  font-weight: bold;  
+}  
+
+.acne-description {  
+  font-size: 1rem;  
+  color: #666;  
+}  
+
+.user-selections-acne {  
+  font-size: 0.9rem;  
+  color: #444;  
+  font-style: italic;  
+  margin-top: 1rem;  
+}  
+
+.action-button-container-acne {  
+  display: flex;  
+  justify-content: center;  
+  margin-top: 20px;  
+}  
+
+.submit-button {  
+  padding: 10px 20px;  
+  font-size: 1rem;  
+  background-color: #F2C94C;  
+  color: rgb(0, 0, 0);  
+  border: none;  
+  border-radius: 30px;  
+  cursor: pointer;  
+  transition: background-color 0.3s;  
+  width: 200px;  
+}  
+
+.submit-button:hover {  
+  background-color: #F29F00;  
 }
+/*Acne Results Styles end*/
