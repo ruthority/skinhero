@@ -1,4 +1,4 @@
-// src/pages/FindNearbyClinics.jsx  
+
 
 import React, { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
