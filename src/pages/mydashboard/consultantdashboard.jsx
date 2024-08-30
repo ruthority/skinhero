@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "/src/index.css"; // Ensure styles are applied  
 
-import ConsultantImage from "./Consultant.jpg"; // Default consultant image  
-import NotificationImage from "./Notification.jpg"; // Default notification image  
+import ConsultantImage from "/src/pages/mydashboard/User.jpg"; // Default consultant image  
+import NotificationImage from "/src/pages/mydashboard/Doorbell.jpg"; // Default notification image  
 
 const ConsultantDashboard = ({
     username,
@@ -19,7 +19,7 @@ const ConsultantDashboard = ({
                 ></div>
                 <div className="consultant-greeting">Hello, {username}</div>
                 <div
-                    className="notification-icon"
+                    className="consultant-notification-icon"
                     style={{ backgroundImage: `url(${notificationIconUrl || NotificationImage})` }}
                 ></div>
             </div>

@@ -1,79 +1,85 @@
-
-
 import React, { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
+import '/src/index.css';  // Example CSS file  
 
 const FindNearbyClinics = () => {
     const [clinics, setClinics] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [selectedClinic, setSelectedClinic] = useState(null);
+    const [mapCenter, setMapCenter] = useState({ lat: -34.397, lng: 150.644 }); // Default center  
 
     const containerStyle = {
         width: '100%',
         height: '400px'
     };
 
-    const center = {
-        lat: -34.397, // Set initial latitude  
-        lng: 150.644 // Set initial longitude  
+    const fetchNearbyClinics = (mapInstance) => {
+        const service = new window.google.maps.places.PlacesService(mapInstance);
+        service.nearbySearch(
+            {
+                location: mapCenter,
+                radius: 5000, // Search radius in meters  
+                type: ['spa', 'beauty_salon'], // Change types according to your need  
+            },
+            (results, status) => {
+                if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
+                    setClinics(results);
+                } else {
+                    setError('Failed to fetch clinics');
+                }
+            }
+        );
     };
 
-    useEffect(() => {
-        const fetchClinics = async () => {
-            try {
-                // Replace with your API endpoint returning clinics data  
-                const response = await fetch('https://example.com/api/clinics');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch clinics');
-                }
-                const data = await response.json();
-                setClinics(data);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+    const onMapLoad = (mapInstance) => {
+        fetchNearbyClinics(mapInstance);
+    };
 
-        fetchClinics();
-    }, []);
-
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
-
-    // Define the markers for clinics based on their locations  
-    const markers = clinics.map((clinic) => ({
-        id: clinic.id,
-        name: clinic.name,
-        address: clinic.address,
-        lat: clinic.location.lat, // Assume your clinic data has a location object with lat and lng  
-        lng: clinic.location.lng
-    }));
+    const onMapDragEnd = (mapInstance) => {
+        const center = mapInstance.getCenter();
+        setMapCenter({ lat: center.lat(), lng: center.lng() });
+        fetchNearbyClinics(mapInstance);
+    };
 
     return (
-        <div>
-            <h1>Find Nearby Skin Clinics</h1>
-            <LoadScript googleMapsApiKey="AIzaSyDdLT5LiQ5MEX-GvXXQ5PEy-hE1EWJE5LQ"> {/* Replace with your Google Maps API Key */}
+
+        <div className="find-nearby-clinics">
+            <div className="findnearbyheader"> <h1> Find Nearby Clinic</h1></div>
+            <LoadScript googleMapsApiKey="AIzaSyDdLT5LiQ5MEXGvXXQ5PEyhE1EWJE5LQ" libraries={['places']}>
                 <GoogleMap
+                    id="map"
                     mapContainerStyle={containerStyle}
-                    center={center} // You can set the center based on user location or the first clinic's location  
+                    center={mapCenter}
                     zoom={10}
+                    onLoad={onMapLoad}
+                    onDragEnd={onMapDragEnd}
                 >
-                    {markers.map(marker => (
+                    {clinics.map((clinic) => (
                         <Marker
-                            key={marker.id}
-                            position={{ lat: marker.lat, lng: marker.lng }}
-                            title={marker.name}
+                            key={clinic.place_id}
+                            position={clinic.geometry.location}
+                            onClick={() => setSelectedClinic(clinic)}
                         />
                     ))}
+                    {selectedClinic && (
+                        <InfoWindow
+                            position={selectedClinic.geometry.location}
+                            onCloseClick={() => setSelectedClinic(null)}
+                        >
+                            <div>
+                                <h3>{selectedClinic.name}</h3>
+                                <p>{selectedClinic.vicinity}</p>
+                            </div>
+                        </InfoWindow>
+                    )}
                 </GoogleMap>
             </LoadScript>
-            <ul>
+            {error && <div className="error">Error: {error}</div>}
+            <ul className="clinic-list">
                 {clinics.map((clinic) => (
-                    <li key={clinic.id}>
-                        <h3>{clinic.name}</h3>
-                        <p>{clinic.address}</p>
-                        <p>{clinic.contact}</p>
+                    <li key={clinic.place_id} className="clinic-item">
+                        <h3 className="clinic-name">{clinic.name}</h3>
+                        {clinic.vicinity && <p className="clinic-address">{clinic.vicinity}</p>}
                     </li>
                 ))}
             </ul>

@@ -15,13 +15,11 @@ import QuizSkinTypePage from "./pages/quiz/skintype";
 import SkinTypeResult from "./pages/quiz/skintyperesult";
 import AcneResult from "./pages/quiz/acneresult";
 import HyperpigmentationResult from "./pages/quiz/hyperpigmentationresult";
-import FindNearbyClinics from "./src/pages/mydashboard/findnearbyclinic";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-    element: <ConsultantDashboard />
   },
   {
     path: "/auth",
@@ -35,9 +33,9 @@ const router = createBrowserRouter([
     children: [
       { path: "userdashboard", element: <UserDashboard /> },
       { path: "consultation", element: <Consultation /> },
-      { path: "consultantdashboard", element: <ConsultantDashboard /> },
       { path: "diagnosis", element: <Diagnosis /> },
       { path: "results", element: <Results /> },
+      { path: "consultantdashboard", element: <ConsultantDashboard /> },
       { path: "findnearbyclinic", element: <FindNearbyClinics /> },
     ],
   },

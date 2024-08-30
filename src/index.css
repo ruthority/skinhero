@@ -1030,3 +1030,155 @@ results-button-container {
   background-color: #F29F00;  
 }
 /*Acne Results Styles end*/
+/* Consultant Dashboard styles begin */  
+
+.consultant-dashboard-container {  
+  position: relative; /* Allow absolute positioning within */  
+  padding: 20px; /* Spacing */  
+}  
+
+.consultant-dashboard-header {  
+  display: flex; /* Align items in a row */  
+  align-items: center; /* Center vertically */  
+  margin-bottom: 50px; /* Space below header */  
+  background-color: #F5F5F5; /* Same as user dashboard */  
+  padding: 20px;  
+  justify-content: center;  
+  border-radius: 8px;  
+}  
+
+.consultant-avatar {  
+  width: 50px; /* Adjust based on your design */  
+  height: 60px; /* Adjust based on your design */  
+  border-radius: 50%; /* Circular avatar */  
+  background-size: cover; /* Ensure background image covers the div */  
+  margin-right: 10px; /* Space to the greeting */  
+}  
+
+.consultant-greeting {  
+  font-family: 'Inter', sans-serif;  
+  font-size: 24px; /* Adjust based on design */  
+  font-weight: 600;  
+  color: #000;  
+}  
+
+.consultant-notification-icon {  
+  width: 30px; /* Adjust based on your design */  
+  height: 30px; /* Adjust based on your design */  
+  background-size: cover;  
+  margin-left: auto; /* Push to the end of header */  
+}  
+
+.consultant-button-container {  
+  display: flex; /* Align buttons in a row */  
+  flex-direction: column; /* Stacking buttons vertically */  
+  gap: 15px; /* Space between buttons */  
+  align-items: center;  
+}  
+
+.consultant-button {  
+  display: flex; /* Flex layout for button */  
+  width: 600px; /* Adjust depending on your needs */  
+  align-items: center; /* Center content vertically */  
+  justify-content: center; /* Center content horizontally */  
+  padding: 12px 16px; /* Padding around the button */  
+  background: #F2F2F2; /* Background color of button */  
+  border-radius: 20px; /* Rounded corners */   
+  text-decoration: none; /* Remove link underline */  
+  color: #000; /* Text color */  
+  transition: background 0.2s; /* Add transition effect */  
+  text-align: center; /* Ensure text is center-aligned */  
+  height: 100px;
+}  
+
+.consultant-button span {  
+  flex-grow: 1; /* Allows text to take available space */  
+  text-align: center; /* Center text */  
+}  
+
+.consultant-button:hover {  
+  background: #e0e0e0; /* Darker background on hover */  
+}  
+
+/* Icons for consultant dashboard */  
+.consultant-icon-appointments {  
+  width: 24px;   
+  height: 24px;   
+  background-image: url('./appointments-icon.png'); /* Path for appointments icon */  
+  background-size: cover;   
+  margin-left: 10px;   
+}  
+
+.consultant-icon-consultation {  
+  width: 24px;   
+  height: 24px;   
+  background-image: url('./consultation-icon.png'); /* Path for consultation icon */  
+  background-size: cover;   
+  margin-left: 10px;   
+}  
+
+.consultant-icon-records {  
+  width: 24px;   
+  height: 24px;  
+  background-image: url('./results.jpg'); /* Path for records icon */  
+  background-size: cover;   
+  margin-left: 10px;   
+}  
+
+/* Consultant Dashboard styles end */
+
+/*Find nearby clinic begins*/
+
+.find-nearby-clinics {  
+  text-align: center; /* Center align the content */  
+  margin: 20px;  
+}  
+
+.header-title {  
+  font-size: 2rem;  
+  color: #2c3e50; /* Dark blue color */  
+  margin-bottom: 20px;  
+  font-family: 'Arial', sans-serif; /* Change as needed */  
+}  
+
+.loading {  
+  font-size: 1.5rem;   
+  color: #16a085; /* Teal color for loading text */  
+}  
+
+.error {  
+  font-size: 1.5rem;   
+  color: #e74c3c; /* Red color for error text */  
+}  
+
+.clinic-list {  
+  list-style-type: none; /* Remove default list style */  
+  padding: 0;  
+}  
+
+.clinic-item {  
+  border-bottom: 1px solid #ddd; /* Light gray line */  
+  padding: 10px;  
+}  
+
+.clinic-name {  
+  font-size: 1.25rem;   
+  color: #2980b9; /* Blue color for clinic names */  
+}  
+findnearbyheader {  
+  background-color: #F5F5F5; /* Same header color as the dashboard */  
+  padding: 20px;  
+  display: flex;  
+  align-items: center;  
+  justify-content: center;  
+  border-radius: 8px;  
+  width: 90%;
+  color: #000;
+  margin-left: 4%;
+}  
+
+.clinic-address {  
+  font-size: 1rem;   
+  color: #7f8c8d; /* Gray color for addresses */  
+}
+/*Find nearby clinic ends*/

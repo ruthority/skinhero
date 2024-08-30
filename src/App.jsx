@@ -2,17 +2,19 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import AuthLoginPage from "./pages/auth/login";
 import AuthSignupPage from "./pages/auth/signup";
-import UserDashboard from "./pages/mydashboard/userdashboard"; // Correct path for UserDashboard  
-import Consultation from "./pages/mydashboard/Consultation"; // Correct path for Consultation  
-import Diagnosis from "./pages/mydashboard/Diagnosis"; // Correct path for Diagnosis  
-import Results from "./pages/mydashboard/Results"; // Correct path for History  
-import Quiz from "./pages/quiz"; // Assuming there is an index file within /quiz  
+import UserDashboard from "./pages/mydashboard/userdashboard";
+import ConsultantDashboard from "./pages/mydashboard/consultantdashboard";
+import Consultation from "./pages/mydashboard/Consultation";
+import FindNearbyClinics from "./pages/mydashboard/findnearbyclinic";
+import Diagnosis from "./pages/mydashboard/Diagnosis";
+import Results from "./pages/mydashboard/Results";
+import Quiz from "./pages/quiz";
 import QuizAcnePage from "./pages/quiz/acne";
 import QuizHyperpigmentationPage from "./pages/quiz/hyperpigmentation";
-import QuizSkinTypePage from "./pages/quiz/skintype";
-import SkinTypeResult from "./pages/quiz/skintyperesult";
+import ProductRecommendations from "./pages/quiz/productrecommendations";
 import AcneResult from "./pages/quiz/acneresult";
 import HyperpigmentationResult from "./pages/quiz/hyperpigmentationresult";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,65 +23,32 @@ const router = createBrowserRouter([
   {
     path: "/auth",
     children: [
-      {
-        path: "login", // URL: /auth/login  
-        element: <AuthLoginPage />,
-      },
-      {
-        path: "signup", // URL: /auth/signup  
-        element: <AuthSignupPage />,
-      },
+      { path: "login", element: <AuthLoginPage /> },
+      { path: "signup", element: <AuthSignupPage /> },
     ],
   },
   {
-    path: "/mydashboard", // Updated to be directly under the root path  
+    path: "/mydashboard",
     children: [
-      {
-        path: "userdashboard", // URL: /dashboard/userdashboard  
-        element: <UserDashboard />, // Component path: ./pages/mydashboard/userdashboard  
-      },
-      {
-        path: "consultation", // URL: /dashboard/consultation  
-        element: <Consultation />, // Component path: ./pages/mydashboard/Consultation  
-      },
-      {
-        path: "diagnosis", // URL: /dashboard/diagnosis  
-        element: <Diagnosis />, // Component path: ./pages/mydashboard/Diagnosis  
-      },
-      {
-        path: "results", // URL: /dashboard/history  
-        element: <Results />, // Component path: ./pages/mydashboard/History  
-      },
+      { path: "userdashboard", element: <UserDashboard /> },
+      { path: "consultation", element: <Consultation /> },
+      { path: "diagnosis", element: <Diagnosis /> },
+      { path: "results", element: <Results /> },
+      { path: "consultantdashboard", element: <ConsultantDashboard /> },
+      { path: "findnearbyclinic", element: <FindNearbyClinics /> },
     ],
   },
   {
-    path: "/quiz", // URL: /quiz  
+    path: "/quiz",
     element: <Quiz />,
     children: [
-      {
-        path: "acne", // URL: /quiz/acne  
-        element: <QuizAcnePage />,
-      },
-      {
-        path: "hyperpigmentation", // URL: /quiz/hyperpigmentation  
-        element: <QuizHyperpigmentationPage />,
-      },
-      {
-        path: "skintype", // URL: /quiz/skintype  
-        element: <QuizSkinTypePage />,
-      },
-      {
-        path: "acneresult", // URL: /quiz/acne  
-        element: <AcneResult />,
-      },
-      {
-        path: "hyperpigmentationresult", // URL: /quiz/hyperpigmentation  
-        element: <HyperpigmentationResult />,
-      },
-      {
-        path: "skintyperesult", // URL: /quiz/skintype  
-        element: <SkinTypeResult />,
-      },
+      { path: "acne", element: <QuizAcnePage /> },
+      { path: "hyperpigmentation", element: <QuizHyperpigmentationPage /> },
+      { path: "skintype", element: <QuizSkinTypePage /> },
+      { path: "acneresult", element: <AcneResult /> },
+      { path: "hyperpigmentationresult", element: <HyperpigmentationResult /> },
+      { path: "skintyperesult", element: <SkinTypeResult /> },
+      { path: "productrecommendations", element: <ProductRecommendations /> },
     ],
   },
 ]);
