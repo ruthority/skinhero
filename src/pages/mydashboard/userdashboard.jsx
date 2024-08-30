@@ -36,6 +36,10 @@ const UserDashboard = ({
                     <span>Go to History</span>
                     <div className="icon-history" />
                 </Link>
+                <Link to="/mydashboard/findnearbyclinic" className="button">
+                    <span>Find Clinic</span>
+                    <div className="icon-history" />
+                </Link>
             </div>
         </div>
     );

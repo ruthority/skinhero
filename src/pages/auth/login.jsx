@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from "../../firebase"; // Adjust path if needed  
+import { auth, db } from "../../firebase"; // Make sure to import Firestore and Auth instances  
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions  
 import "../../index.css";
 
 export default function AuthLoginPage() {
@@ -18,11 +19,27 @@ export default function AuthLoginPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorMessage(''); // Clear previous errors  
+
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            // Redirect to dashboard on successful login  
-            console.log("User logged in:", userCredential.user);
-            navigate('/auth/Dashboard/Dashboard'); // Make sure the path is correct for your application  
+
+            // Fetch the user role from Firestore after successful login  
+            const userDoc = await getDoc(doc(db, "users", userCredential.user.uid));
+            if (userDoc.exists()) {
+                const userRole = userDoc.data().role; // Extract the role from Firestore  
+
+                // Redirect based on user role  
+                if (userRole === 'consultant') {
+                    navigate('/mydashboard/consultantdashboard'); // Redirect to consultant dashboard  
+                } else {
+                    navigate('/mydashboard/userdashboard'); // Redirect to user dashboard  
+                }
+            } else {
+                // If user document does not exist  
+                console.error("No such user document found!");
+                setErrorMessage("User not found in the database. Please contact support.");
+            }
         } catch (error) {
             console.error("Error logging in:", error.message);
             setErrorMessage(error.message); // Store error message in state  

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../../firebase'; // Adjust path if needed  
+import { auth, db } from '../../firebase'; // Adjust path if needed  
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { setDoc, doc } from 'firebase/firestore'; // Import Firestore functions  
 import "../../index.css";
 
 export default function AuthSignupPage() {
@@ -15,6 +16,7 @@ export default function AuthSignupPage() {
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     const [errorMessage, setErrorMessage] = useState(''); // For error messages  
     const [successMessage, setSuccessMessage] = useState(''); // For success messages  
+    const [selectedRole, setSelectedRole] = useState('user'); // Default role  
 
     const togglePasswordVisibility = () => {
         setShowPassword(prev => !prev);
@@ -35,12 +37,20 @@ export default function AuthSignupPage() {
         }
 
         try {
+            // Create user in Firebase Auth  
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            // Optional: Save additional user info such as username in Firestore or Realtime Database  
-            console.log("User signed up:", userCredential.user);
-            setSuccessMessage("User registered successfully!");
-            // Optionally navigate to login or dashboard after success  
-            navigate('/auth/login'); // Redirect to login after successful signup  
+            const user = userCredential.user;
+
+            // Store additional user info including role in Firestore  
+            await setDoc(doc(db, "users", user.uid), {
+                username: username,
+                email: email,
+                role: selectedRole
+            });
+
+            console.log("User signed up:", user);
+            setSuccessMessage("Signed up successfully!"); // Set the success message  
+            setTimeout(() => navigate('/auth/login'), 2000); // Redirect after 2 seconds  
         } catch (error) {
             console.error("Error signing up:", error.message);
             setErrorMessage(error.message); // Set error message  
@@ -114,8 +124,27 @@ export default function AuthSignupPage() {
                         {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
                 </div>
+                <div className="role-selection">
+                    <label>
+                        <input
+                            type="radio"
+                            value="user"
+                            checked={selectedRole === 'user'}
+                            onChange={() => setSelectedRole('user')}
+                        />
+                        User
+                    </label>
+                    <label>
+                        <input
+                            type="radio"
+                            value="consultant"
+                            checked={selectedRole === 'consultant'}
+                            onChange={() => setSelectedRole('consultant')}
+                        />
+                        Consultant
+                    </label>
+                </div>
                 <button type="submit" className="submit-button">Sign Up</button>
-
             </form>
             <div className="login-text">
                 Already have an account? <Link to="/auth/login" className="login-link">Login</Link>

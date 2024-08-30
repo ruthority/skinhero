@@ -1,59 +1,63 @@
-import { MantineProvider } from '@mantine/core';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import IndexPage from "./pages/index";
-import Auth from "./pages/auth";
+import HomePage from "./pages/HomePage";
 import AuthLoginPage from "./pages/auth/login";
 import AuthSignupPage from "./pages/auth/signup";
+import UserDashboard from "./pages/mydashboard/userdashboard";
+import ConsultantDashboard from "./pages/mydashboard/consultantdashboard";
+import Consultation from "./pages/mydashboard/Consultation";
+import FindNearbyClinics from "./pages/mydashboard/findnearbyclinic";
+import Diagnosis from "./pages/mydashboard/Diagnosis";
+import Results from "./pages/mydashboard/Results";
 import Quiz from "./pages/quiz";
 import QuizAcnePage from "./pages/quiz/acne";
 import QuizHyperpigmentationPage from "./pages/quiz/hyperpigmentation";
 import QuizSkinTypePage from "./pages/quiz/skintype";
+import SkinTypeResult from "./pages/quiz/skintyperesult";
+import AcneResult from "./pages/quiz/acneresult";
+import HyperpigmentationResult from "./pages/quiz/hyperpigmentationresult";
+import FindNearbyClinics from "./src/pages/mydashboard/findnearbyclinic";
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <IndexPage />,
-
+    element: <HomePage />,
+    element: <ConsultantDashboard />
+  },
+  {
+    path: "/auth",
+    children: [
+      { path: "login", element: <AuthLoginPage /> },
+      { path: "signup", element: <AuthSignupPage /> },
+    ],
+  },
+  {
+    path: "/mydashboard",
+    children: [
+      { path: "userdashboard", element: <UserDashboard /> },
+      { path: "consultation", element: <Consultation /> },
+      { path: "consultantdashboard", element: <ConsultantDashboard /> },
+      { path: "diagnosis", element: <Diagnosis /> },
+      { path: "results", element: <Results /> },
+      { path: "findnearbyclinic", element: <FindNearbyClinics /> },
+    ],
   },
   {
     path: "/quiz",
     element: <Quiz />,
     children: [
-      {
-        path: "acne",
-        element: <QuizAcnePage />,
-      },
-      {
-        path: "hyperpigmentation",
-        element: <QuizHyperpigmentationPage />,
-      },
-      {
-        path: "skintype",
-        element: <QuizSkinTypePage />,
-      },
+      { path: "acne", element: <QuizAcnePage /> },
+      { path: "hyperpigmentation", element: <QuizHyperpigmentationPage /> },
+      { path: "skintype", element: <QuizSkinTypePage /> },
+      { path: "acneresult", element: <AcneResult /> },
+      { path: "hyperpigmentationresult", element: <HyperpigmentationResult /> },
+      { path: "skintyperesult", element: <SkinTypeResult /> },
     ],
   },
-  {
-    path: "/auth",
-    element: <Auth />,
-    children: [
-      {
-        path: "login",
-        element: <AuthLoginPage />,
-      },
-      {
-        path: "signup",
-        element: <AuthSignupPage />,
-      },
-    ],
-  }
-
 ]);
 
 const App = () => {
   return (
-    <MantineProvider>
-      <RouterProvider router={router} />
-    </MantineProvider>
+    <RouterProvider router={router} />
   );
 };
 
