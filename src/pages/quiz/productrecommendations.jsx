@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { productRecommendations } from '/src/pages/quiz/productrecommendation.jsx';
 const ProductRecommendations = ({ skinType, selectedAcne, selectedHyperpigmentation }) => {
     const recommendedProducts = productRecommendations[skinType]?.products || [];
 

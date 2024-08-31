@@ -1,15 +1,16 @@
+// src/pages/mydashboard/UserDashboard.js  
+
 import React from "react";
 import { Link } from "react-router-dom";
+import { useUser } from "/src/pages/auth/usercontext"; // Import the UserContext  
 import "/src/index.css"; // Ensure styles are applied  
 
 import UserImage from "./User.jpg"; // Default user image  
 import DoorbellImage from "./Doorbell.jpg"; // Default doorbell image  
 
-const UserDashboard = ({
-    username,
-    userAvatarUrl,
-    bellIconUrl,
-}) => {
+const UserDashboard = ({ userAvatarUrl, bellIconUrl }) => {
+    const { username } = useUser(); // Get the username from context  
+
     return (
         <div className="dashboard-container">
             <div className="dashboard-header">
@@ -17,7 +18,7 @@ const UserDashboard = ({
                     className="user-avatar"
                     style={{ backgroundImage: `url(${userAvatarUrl || UserImage})` }}
                 ></div>
-                <div className="greeting">Hi, {username}</div>
+                <div className="greeting">Hi, {username}</div> {/* Displaying the username */}
                 <div
                     className="doorbell-icon"
                     style={{ backgroundImage: `url(${bellIconUrl || DoorbellImage})` }}

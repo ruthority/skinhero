@@ -15,6 +15,7 @@ export default function Results() {
                     <Link to="/quiz/acneresult" className="results-button"><span>Acne Assessment Result</span></Link>
                     <Link to="/quiz/hyperpigmentationresult" className="results-button"><span>Hyperpigmentation Result</span></Link>
                     <Link to="/quiz/skintyperesult" className="results-button"><span>Skin Type Result</span></Link>
+                    <Link to="/quiz/productrecommendations" className="results-button"><span>Product Recommendations</span></Link>
                 </div>
             </div>
         </div>

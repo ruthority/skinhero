@@ -4,19 +4,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase'; // Adjust path if needed  
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore'; // Import Firestore functions  
+import { useUser } from '/src/pages/auth/usercontext'; // Import the UserContext  
 import "../../index.css";
 
 export default function AuthSignupPage() {
-    const navigate = useNavigate(); // For navigation after signup  
-    const [username, setUsername] = useState('');
+    const navigate = useNavigate();
+    const { setUsername } = useUser(); // Get the setUsername function from context  
+    const [username, setUsernameInput] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(''); // For error messages  
-    const [successMessage, setSuccessMessage] = useState(''); // For success messages  
-    const [selectedRole, setSelectedRole] = useState('user'); // Default role  
+    const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+    const [selectedRole, setSelectedRole] = useState('user');
 
     const togglePasswordVisibility = () => {
         setShowPassword(prev => !prev);

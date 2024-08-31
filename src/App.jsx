@@ -1,4 +1,6 @@
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { UserProvider } from './pages/auth/usercontext'; // Import UserProvider  
 import HomePage from "./pages/HomePage";
 import AuthLoginPage from "./pages/auth/login";
 import AuthSignupPage from "./pages/auth/signup";
@@ -11,7 +13,10 @@ import Results from "./pages/mydashboard/Results";
 import Quiz from "./pages/quiz";
 import QuizAcnePage from "./pages/quiz/acne";
 import QuizHyperpigmentationPage from "./pages/quiz/hyperpigmentation";
+import QuizSkinTypePage from "./pages/quiz/skintype";
+import SkinTypeResult from "./pages/quiz/skintyperesult";
 import ProductRecommendations from "./pages/quiz/productrecommendations";
+import ProductRecommendation from "./pages/quiz/productrecommendation";
 import AcneResult from "./pages/quiz/acneresult";
 import HyperpigmentationResult from "./pages/quiz/hyperpigmentationresult";
 
@@ -25,6 +30,7 @@ const router = createBrowserRouter([
     children: [
       { path: "login", element: <AuthLoginPage /> },
       { path: "signup", element: <AuthSignupPage /> },
+      { path: "usercontext", element: <UserContext /> },
     ],
   },
   {
@@ -49,13 +55,16 @@ const router = createBrowserRouter([
       { path: "hyperpigmentationresult", element: <HyperpigmentationResult /> },
       { path: "skintyperesult", element: <SkinTypeResult /> },
       { path: "productrecommendations", element: <ProductRecommendations /> },
+      { path: "productrecommendation", element: <ProductRecommendation /> },
     ],
   },
 ]);
 
 const App = () => {
   return (
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   );
 };
 
