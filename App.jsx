@@ -15,6 +15,7 @@ import QuizSkinTypePage from "./pages/quiz/skintype";
 import SkinTypeResult from "./pages/quiz/skintyperesult";
 import AcneResult from "./pages/quiz/acneresult";
 import HyperpigmentationResult from "./pages/quiz/hyperpigmentationresult";
+import FindNearbyClinics from "./src/pages/mydashboard/findnearbyclinic";
 
 const router = createBrowserRouter([
   {
