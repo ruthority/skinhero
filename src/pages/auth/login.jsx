@@ -87,7 +87,7 @@ export default function AuthLoginPage() {
                 </div>
                 <button type="submit" className="submit-button">Login</button>
                 <div className="forgot-password-text">
-                    <Link to="/forgotpassword" className="forgot-password-link">Forgot Password?</Link>
+                    <Link to="/auth/forgotpassword" className="forgot-password-link">Forgot Password?</Link>
                 </div>
                 <div className="signup-text">
                     Don't have an account? <Link to="/auth/signup" className="signup-link">Sign Up</Link>
