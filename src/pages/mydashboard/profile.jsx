@@ -26,7 +26,7 @@ const Profile = () => {
             await signOut(auth); // Sign out the user  
             navigate('/auth/login'); // Redirect to login page  
         } catch (error) {
-            console.error("Error signing out:", error.message);
+            console.error("Error logging out:", error.message);
         }
     };
 
@@ -44,7 +44,7 @@ const Profile = () => {
             ) : (
                 <div className="loading-message">Loading user information...</div>
             )}
-            <button className="sign-out-button" onClick={handleSignOut}>Sign Out</button>
+            <button className="sign-out-button" onClick={handleSignOut}>Log Out</button>
         </div>
     );
 };

@@ -36,7 +36,7 @@ const UserDashboard = () => {
                     <div className="icon-consultant" />
                 </Link>
                 <Link to="/mydashboard/Results" className="button">
-                    <span>Go to History</span>
+                    <span>Test Results</span>
                     <div className="icon-history" />
                 </Link>
                 <Link to="/mydashboard/findnearbyclinic" className="button">

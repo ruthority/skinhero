@@ -54,8 +54,6 @@ const HomePage = () => {
                         <nav className="nav-menu">
                             <Link to="/auth/signup">Sign Up</Link>
                             <Link to="/auth/login">Login</Link>
-                            <Link to="/mydashboard/userdashboard">Dashboard</Link>
-                            <Link to="/mydashboard/consultantdashboard">Dashboard</Link>
                         </nav>
                     )}
                 </div>

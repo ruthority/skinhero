@@ -3,6 +3,7 @@ import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from "../../firebase"; // Ensure you import Firestore and Auth instances  
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import Cookies from 'js-cookie';
 import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions  
 import "../../index.css";
 
@@ -11,6 +12,7 @@ export default function AuthLoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [rememberMe, setRememberMe] = useState(false); // New checkbox state  
     const [errorMessage, setErrorMessage] = useState(''); // State to manage error messages  
 
     const togglePasswordVisibility = () => {
@@ -30,6 +32,15 @@ export default function AuthLoginPage() {
                 const userData = userDoc.data();
                 const userRole = userData.role; // Extract the role from Firestore  
                 const username = userData.username; // Extract the username from Firestore  
+
+                // Set a cookie with user information  
+                const cookieExpiryDays = rememberMe ? 30 : 1; // Remember Me sets longer expiry  
+                Cookies.set('user', JSON.stringify({
+                    email: userData.email,
+                    uid: userCredential.user.uid,
+                    role: userRole,
+                    username
+                }), { expires: cookieExpiryDays });
 
                 // Redirect based on user role, passing the username through state  
                 if (userRole === 'consultant') {
@@ -64,7 +75,8 @@ export default function AuthLoginPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="auth-input"
-                        required // Make this field required  
+                        required
+                        autoComplete="email" // Add this line  
                     />
                 </div>
                 <div className="input-container auth-input-container">
@@ -75,7 +87,8 @@ export default function AuthLoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className="auth-input"
-                        required // Make this field required  
+                        required
+                        autoComplete="password" // Add this line  
                     />
                     <button
                         type="button"
@@ -84,6 +97,17 @@ export default function AuthLoginPage() {
                     >
                         {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </button>
+                </div>
+                {/* Add Remember Me Checkbox */}
+                <div className="remember-me-container">
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={rememberMe}
+                            onChange={() => setRememberMe(prev => !prev)}
+                        />
+                        Remember Me
+                    </label>
                 </div>
                 <button type="submit" className="submit-button">Login</button>
                 <div className="forgot-password-text">

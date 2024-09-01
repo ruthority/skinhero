@@ -15,8 +15,11 @@ import QuizAcnePage from "./pages/quiz/acne";
 import QuizHyperpigmentationPage from "./pages/quiz/hyperpigmentation";
 import QuizSkinTypePage from "./pages/quiz/skintype";
 import SkinTypeResult from "./pages/quiz/skintyperesult";
+import SkinTypeSavedResult from "./pages/quiz/skintypesavedresult";
 import AcneResult from "./pages/quiz/acneresult";
+import AcneSavedResult from "./pages/quiz/acnesavedresult";
 import HyperpigmentationResult from "./pages/quiz/hyperpigmentationresult";
+import HyperpigmentationSavedResult from "./pages/quiz/hyperpigmentationsavedresult";
 
 
 const router = createBrowserRouter([
@@ -54,6 +57,9 @@ const router = createBrowserRouter([
       { path: "acneresult", element: <AcneResult /> },
       { path: "hyperpigmentationresult", element: <HyperpigmentationResult /> },
       { path: "skintyperesult", element: <SkinTypeResult /> },
+      { path: "acnesavedresult", element: <AcneSavedResult /> },
+      { path: "hyperpigmentationsavedresult", element: <HyperpigmentationSavedResult /> },
+      { path: "skintypesavedresult", element: <SkinTypeSavedResult /> },
     ],
   },
 ]);
