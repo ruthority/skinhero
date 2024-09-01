@@ -9,6 +9,7 @@ import Consultation from "./pages/mydashboard/Consultation";
 import FindNearbyClinics from "./pages/mydashboard/findnearbyclinic";
 import Diagnosis from "./pages/mydashboard/Diagnosis";
 import Results from "./pages/mydashboard/Results";
+import Profile from "./pages/mydashboard/profile";
 import Quiz from "./pages/quiz";
 import QuizAcnePage from "./pages/quiz/acne";
 import QuizHyperpigmentationPage from "./pages/quiz/hyperpigmentation";
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
       { path: "results", element: <Results /> },
       { path: "consultantdashboard", element: <ConsultantDashboard /> },
       { path: "findnearbyclinic", element: <FindNearbyClinics /> },
+      { path: "profile", element: < Profile /> },
     ],
   },
   {

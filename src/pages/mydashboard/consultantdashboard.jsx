@@ -11,10 +11,12 @@ const ConsultantDashboard = () => {
     return (
         <div className="consultant-dashboard-container">
             <div className="consultant-dashboard-header">
-                <div
-                    className="consultant-avatar"
-                    style={{ backgroundImage: `url(${ConsultantImage})` }}
-                ></div>
+                <Link to="/mydashboard/profile" className="profile-link">
+                    <div
+                        className="consultant-avatar"
+                        style={{ backgroundImage: `url(${ConsultantImage})` }}
+                    ></div>
+                </Link>
                 <div className="consultant-greeting">Hello, {username || 'Guest'}</div> {/* Display username or 'Guest' */}
             </div>
             <div className="consultant-button-container">

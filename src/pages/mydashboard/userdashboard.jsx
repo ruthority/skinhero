@@ -13,10 +13,13 @@ const UserDashboard = () => {
     return (
         <div className="dashboard-container">
             <div className="dashboard-header">
-                <div
-                    className="user-avatar"
-                    style={{ backgroundImage: `url(${userAvatarUrl || UserImage})` }}
-                ></div>
+                <Link to="/mydashboard/profile" className="profile-link">
+                    <div
+                        className="user-avatar"
+                        style={{ backgroundImage: `url(${userAvatarUrl || UserImage})` }}
+
+                    ></div>
+                </Link>
                 <div className="greeting">Hi, {username || 'Guest'}</div> {/* Display username or 'Guest' */}
                 <div
                     className="doorbell-icon"
