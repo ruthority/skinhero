@@ -1,88 +1,66 @@
-import React, { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-import '/src/index.css';  // Example CSS file  
+// src/pages/FindNearbyClinics.jsx  
+
+import React from 'react';
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+
+const locations = [
+    {
+        name: "Abuja",
+        address: "No. 35 Pope John Paul II Street, Off Gana Street, Maitama, Abuja, Nigeria.",
+        position: { lat: 9.05785, lng: 7.49508 },  // Coordinates for Abuja  
+    },
+    {
+        name: "Lagos",
+        address: "No. 8 Aromire Road (formerly Rumsey road), MTN area, Old Ikoyi, Lagos state.",
+        position: { lat: 6.5244, lng: 3.3722 },  // Coordinates for Lagos  
+    },
+    {
+        name: "Port Harcourt",
+        address: "No.12 Alalibo Avenue, Off Mbiama street, Old GRA, Port Harcourt, Rivers State.",
+        position: { lat: 4.8153, lng: 7.0499 },  // Coordinates for Port Harcourt  
+    },
+];
 
 const FindNearbyClinics = () => {
-    const [clinics, setClinics] = useState([]);
-    const [error, setError] = useState(null);
-    const [selectedClinic, setSelectedClinic] = useState(null);
-    const [mapCenter, setMapCenter] = useState({ lat: -34.397, lng: 150.644 }); // Default center  
-
-    const containerStyle = {
-        width: '100%',
-        height: '400px'
+    const mapContainerStyle = {
+        height: "400px",
+        width: "100%",
     };
 
-    const fetchNearbyClinics = (mapInstance) => {
-        const service = new window.google.maps.places.PlacesService(mapInstance);
-        service.nearbySearch(
-            {
-                location: mapCenter,
-                radius: 5000, // Search radius in meters  
-                type: ['spa', 'beauty_salon'], // Change types according to your need  
-            },
-            (results, status) => {
-                if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
-                    setClinics(results);
-                } else {
-                    setError('Failed to fetch clinics');
-                }
-            }
-        );
-    };
-
-    const onMapLoad = (mapInstance) => {
-        fetchNearbyClinics(mapInstance);
-    };
-
-    const onMapDragEnd = (mapInstance) => {
-        const center = mapInstance.getCenter();
-        setMapCenter({ lat: center.lat(), lng: center.lng() });
-        fetchNearbyClinics(mapInstance);
+    const center = {
+        lat: 6.5244, // Center the map somewhere in Nigeria  
+        lng: 3.3722,
     };
 
     return (
-
-        <div className="find-nearby-clinics">
-            <div className="findnearbyheader"> <h1> Find Nearby Clinic</h1></div>
-            <LoadScript googleMapsApiKey="AIzaSyDdLT5LiQ5MEXGvXXQ5PEyhE1EWJE5LQ" libraries={['places']}>
+        <div>
+            <h1>Find Nearby Clinics</h1>
+            <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
                 <GoogleMap
-                    id="map"
-                    mapContainerStyle={containerStyle}
-                    center={mapCenter}
-                    zoom={10}
-                    onLoad={onMapLoad}
-                    onDragEnd={onMapDragEnd}
+                    mapContainerStyle={mapContainerStyle}
+                    zoom={5}
+                    center={center}
                 >
-                    {clinics.map((clinic) => (
+                    {locations.map((location, index) => (
                         <Marker
-                            key={clinic.place_id}
-                            position={clinic.geometry.location}
-                            onClick={() => setSelectedClinic(clinic)}
+                            key={index}
+                            position={location.position}
+                            label={location.name}
+                            onClick={() => window.alert(location.address)}
                         />
                     ))}
-                    {selectedClinic && (
-                        <InfoWindow
-                            position={selectedClinic.geometry.location}
-                            onCloseClick={() => setSelectedClinic(null)}
-                        >
-                            <div>
-                                <h3>{selectedClinic.name}</h3>
-                                <p>{selectedClinic.vicinity}</p>
-                            </div>
-                        </InfoWindow>
-                    )}
                 </GoogleMap>
             </LoadScript>
-            {error && <div className="error">Error: {error}</div>}
-            <ul className="clinic-list">
-                {clinics.map((clinic) => (
-                    <li key={clinic.place_id} className="clinic-item">
-                        <h3 className="clinic-name">{clinic.name}</h3>
-                        {clinic.vicinity && <p className="clinic-address">{clinic.vicinity}</p>}
-                    </li>
-                ))}
-            </ul>
+            <div>
+                <h2>Locations</h2>
+                <ul>
+                    {locations.map((location, index) => (
+                        <li key={index}>
+                            <strong>{location.name}</strong>: {location.address}
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     );
 };

@@ -1,15 +1,16 @@
+
+
 import React, { useState } from 'react';
 import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, db } from '../../firebase'; // Adjust path if needed  
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore'; // Import Firestore functions  
-import { useUser } from '/src/pages/auth/usercontext'; // Import the UserContext  
+
 import "../../index.css";
 
 export default function AuthSignupPage() {
     const navigate = useNavigate();
-    const { setUsername } = useUser(); // Get the setUsername function from context  
     const [username, setUsernameInput] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -52,7 +53,10 @@ export default function AuthSignupPage() {
 
             console.log("User signed up:", user);
             setSuccessMessage("Signed up successfully!"); // Set the success message  
-            setTimeout(() => navigate('/auth/login'), 2000); // Redirect after 2 seconds  
+            setTimeout(() => {
+                // Redirect to login page  
+                navigate('/auth/login', { state: { selectedRole } });
+            }, 2000); // Redirect after 2 seconds  
         } catch (error) {
             console.error("Error signing up:", error.message);
             setErrorMessage(error.message); // Set error message  
@@ -74,7 +78,7 @@ export default function AuthSignupPage() {
                         type="text"
                         placeholder="Username"
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={(e) => setUsernameInput(e.target.value)}
                         className="auth-input"
                         required // Make this field required  
                     />

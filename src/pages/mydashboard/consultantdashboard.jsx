@@ -1,40 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import "/src/index.css"; // Ensure styles are applied  
+import { useLocation, Link } from "react-router-dom";
+import "../../index.css"; // Ensure styles are applied  
+import ConsultantImage from "./User.jpg"; // Default consultant image  
+import NotificationImage from "./Doorbell.jpg"; // Default notification image  
 
-import ConsultantImage from "/src/pages/mydashboard/User.jpg"; // Default consultant image  
-import NotificationImage from "/src/pages/mydashboard/Doorbell.jpg"; // Default notification image  
+const ConsultantDashboard = () => {
+    const location = useLocation();
+    const { username } = location.state || {}; // Retrieve username from location state OR set to undefined  
 
-const ConsultantDashboard = ({
-    username,
-    consultantAvatarUrl,
-    notificationIconUrl,
-}) => {
     return (
         <div className="consultant-dashboard-container">
             <div className="consultant-dashboard-header">
                 <div
                     className="consultant-avatar"
-                    style={{ backgroundImage: `url(${consultantAvatarUrl || ConsultantImage})` }}
+                    style={{ backgroundImage: `url(${ConsultantImage})` }}
                 ></div>
-                <div className="consultant-greeting">Hello, {username}</div>
-                <div
-                    className="consultant-notification-icon"
-                    style={{ backgroundImage: `url(${notificationIconUrl || NotificationImage})` }}
-                ></div>
+                <div className="consultant-greeting">Hello, {username || 'Guest'}</div> {/* Display username or 'Guest' */}
             </div>
             <div className="consultant-button-container">
                 <Link to="/mydashboard/Appointments" className="consultant-button">
                     <span>View Appointments</span>
-                    <div className="consultant-icon-appointments" />
                 </Link>
                 <Link to="/mydashboard/ConductConsultation" className="consultant-button">
                     <span>Conduct Consultation</span>
-                    <div className="consultant-icon-consultation" />
                 </Link>
                 <Link to="/mydashboard/ClientRecords" className="consultant-button">
                     <span>Access Client Records</span>
-                    <div className="consultant-icon-records" />
                 </Link>
             </div>
         </div>

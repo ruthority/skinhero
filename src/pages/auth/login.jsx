@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth, db } from "../../firebase"; // Make sure to import Firestore and Auth instances  
+import { auth, db } from "../../firebase"; // Ensure you import Firestore and Auth instances  
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions  
 import "../../index.css";
@@ -24,16 +24,18 @@ export default function AuthLoginPage() {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
-            // Fetch the user role from Firestore after successful login  
+            // Fetch the user document from Firestore after successful login  
             const userDoc = await getDoc(doc(db, "users", userCredential.user.uid));
             if (userDoc.exists()) {
-                const userRole = userDoc.data().role; // Extract the role from Firestore  
+                const userData = userDoc.data();
+                const userRole = userData.role; // Extract the role from Firestore  
+                const username = userData.username; // Extract the username from Firestore  
 
-                // Redirect based on user role  
+                // Redirect based on user role, passing the username through state  
                 if (userRole === 'consultant') {
-                    navigate('/mydashboard/consultantdashboard'); // Redirect to consultant dashboard  
+                    navigate('/mydashboard/consultantdashboard', { state: { username } }); // Redirect to consultant dashboard  
                 } else {
-                    navigate('/mydashboard/userdashboard'); // Redirect to user dashboard  
+                    navigate('/mydashboard/userdashboard', { state: { username } }); // Redirect to user dashboard  
                 }
             } else {
                 // If user document does not exist  
@@ -85,7 +87,7 @@ export default function AuthLoginPage() {
                 </div>
                 <button type="submit" className="submit-button">Login</button>
                 <div className="forgot-password-text">
-                    <Link to="/forgot-password" className="forgot-password-link">Forgot Password?</Link>
+                    <Link to="/forgotpassword" className="forgot-password-link">Forgot Password?</Link>
                 </div>
                 <div className="signup-text">
                     Don't have an account? <Link to="/auth/signup" className="signup-link">Sign Up</Link>

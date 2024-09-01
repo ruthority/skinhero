@@ -1,15 +1,14 @@
-// src/pages/mydashboard/UserDashboard.js  
-
 import React from "react";
-import { Link } from "react-router-dom";
-import { useUser } from "/src/pages/auth/usercontext"; // Import the UserContext  
-import "/src/index.css"; // Ensure styles are applied  
-
+import { useLocation, Link } from "react-router-dom";
+import "../../index.css"; // Ensure styles are applied  
 import UserImage from "./User.jpg"; // Default user image  
 import DoorbellImage from "./Doorbell.jpg"; // Default doorbell image  
 
-const UserDashboard = ({ userAvatarUrl, bellIconUrl }) => {
-    const { username } = useUser(); // Get the username from context  
+const UserDashboard = () => {
+    const location = useLocation();
+    const { username } = location.state || {}; // Retrieve username from location state OR set to undefined  
+    const userAvatarUrl = ''; // Logic to fetch user avatar URL if available  
+    const bellIconUrl = ''; // Logic to fetch bell icon URL if available  
 
     return (
         <div className="dashboard-container">
@@ -18,7 +17,7 @@ const UserDashboard = ({ userAvatarUrl, bellIconUrl }) => {
                     className="user-avatar"
                     style={{ backgroundImage: `url(${userAvatarUrl || UserImage})` }}
                 ></div>
-                <div className="greeting">Hi, {username}</div> {/* Displaying the username */}
+                <div className="greeting">Hi, {username || 'Guest'}</div> {/* Display username or 'Guest' */}
                 <div
                     className="doorbell-icon"
                     style={{ backgroundImage: `url(${bellIconUrl || DoorbellImage})` }}
