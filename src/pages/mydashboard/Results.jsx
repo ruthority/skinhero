@@ -12,9 +12,9 @@ export default function Results() {
                 <h2 className="results-title">Select Result Type</h2>
                 <img src={image} alt="Results Icon" className="results-icon" />
                 <div className="results-button-container">
-                    <Link to="/quiz/acnesavedresult" className="results-button"><span>Acne Assessment Result</span></Link>
-                    <Link to="/quiz/hyperpigmentationsavedresult" className="results-button"><span>Hyperpigmentation Result</span></Link>
-                    <Link to="/quiz/skintypesavedresult" className="results-button"><span>Skin Type Result</span></Link>
+                    <Link to="/quiz/acnesavedresult" className="results-button"><span>Acne Assessment Results</span></Link>
+                    <Link to="/quiz/hyperpigmentationsavedresult" className="results-button"><span>Hyperpigmentation Results</span></Link>
+                    <Link to="/quiz/skintypesavedresult" className="results-button"><span>Skin Type Results</span></Link>
                     <Link to="/quiz/productrecommendations" className="results-button"><span>Product Recommendations</span></Link>
                 </div>
             </div>

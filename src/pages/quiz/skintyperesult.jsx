@@ -1,8 +1,16 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import '/src/index.css'; // Adjust path as necessary  
+import { useNavigate } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from "../../firebase"; // Adjust the path if necessary
+import '/src/index.css'; // Adjust path as necessary
 
 const SkinTypeResult = () => {
+    const navigate = useNavigate();
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+    const userId = currentUser ? currentUser.uid : null;
+
     const location = useLocation();
     const { responses } = location.state || { responses: {} }; // Handle possible undefined state  
     let skinType;
@@ -28,26 +36,39 @@ const SkinTypeResult = () => {
         description = 'It seems like the answers are not conclusive. Please consult a dermatologist for a proper assessment.';
     }
 
-    // Create a string displaying selected options  
-    const selectedOptions = `  
-        Skin Feel: ${skinFeel},   
-        Tissue Residue: ${tissueResidue},   
-        Itchy/Inflamed: ${itchyInflamed},   
-        Cheeks Tight: ${cheeksTight}  
-    `;
+    const handleSave = async () => {
+        if (!userId) {
+            alert('User not authenticated. Cannot save results.');
+            return;
+        }
+
+        const skinTypeResult = {
+            skinType,
+            responses,
+            timestamp: new Date().toISOString(),
+        };
+
+        try {
+            await setDoc(doc(db, "users", userId, "skinTypeResults", Date.now().toString()), skinTypeResult);
+            alert('Results saved successfully!');
+        } catch (error) {
+            console.error("Error saving results: ", error);
+            alert('Error saving results!');
+        }
+    };
 
     return (
         <div className="result-wrapper">
-            <div className="st-result-header">
+            <div className="acne-result-header">
                 <h1>Skin Type Result</h1>
             </div>
-            <div className="result-container">
-                <h3 className="skin-type">Based on your selections, your skin type is : {skinType}</h3>
+            <div className="acne-result-container">
+                <h3 className="skin-type">Based on your selections, your skin type is: {skinType}</h3>
                 <p className="description">{description}</p>
                 <p className="user-selections">You selected: {selectedOptions}</p>
             </div>
             <div className="action-button-container">
-                <button className="submit-button" onClick={() => alert('Saved result!')}>Save </button>
+                <button className="submit-button" onClick={handleSave}>Save</button>
             </div>
         </div>
     );
