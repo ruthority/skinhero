@@ -6,7 +6,6 @@ import ForgotPassword from "./pages/auth/forgotpassword";
 import UserDashboard from "./pages/mydashboard/userdashboard";
 import ConsultantDashboard from "./pages/mydashboard/consultantdashboard";
 import Consultation from "./pages/mydashboard/Consultation";
-import FindNearbyClinics from "./pages/mydashboard/findnearbyclinic";
 import Diagnosis from "./pages/mydashboard/Diagnosis";
 import Results from "./pages/mydashboard/Results";
 import Profile from "./pages/mydashboard/profile";
@@ -20,7 +19,8 @@ import AcneResult from "./pages/quiz/acneresult";
 import AcneSavedResult from "./pages/quiz/acnesavedresult";
 import HyperpigmentationResult from "./pages/quiz/hyperpigmentationresult";
 import HyperpigmentationSavedResult from "./pages/quiz/hyperpigmentationsavedresult";
-
+import ProductRecommendations from "./pages/quiz/productrecommendations"
+import UnifiedQuizForm from "./pages/quiz/unifiedquizform";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +43,6 @@ const router = createBrowserRouter([
       { path: "diagnosis", element: <Diagnosis /> },
       { path: "results", element: <Results /> },
       { path: "consultantdashboard", element: <ConsultantDashboard /> },
-      { path: "findnearbyclinic", element: <FindNearbyClinics /> },
       { path: "profile", element: < Profile /> },
     ],
   },
@@ -60,6 +59,9 @@ const router = createBrowserRouter([
       { path: "acnesavedresult", element: <AcneSavedResult /> },
       { path: "hyperpigmentationsavedresult", element: <HyperpigmentationSavedResult /> },
       { path: "skintypesavedresult", element: <SkinTypeSavedResult /> },
+      { path: "productrecommendations", element: <ProductRecommendations /> },
+      { path: "unifiedquizform", element: <UnifiedQuizForm /> },
+
     ],
   },
 ]);

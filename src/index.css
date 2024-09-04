@@ -1131,61 +1131,6 @@ results-button-container {
 
 /* Consultant Dashboard styles end */
 
-/*Find nearby clinic begins*/
-
-.find-nearby-clinics {  
-  text-align: center; /* Center align the content */  
-  margin: 20px;  
-}  
-
-.header-title {  
-  font-size: 2rem;  
-  color: #2c3e50; /* Dark blue color */  
-  margin-bottom: 20px;  
-  font-family: 'Arial', sans-serif; /* Change as needed */  
-}  
-
-.loading {  
-  font-size: 1.5rem;   
-  color: #16a085; /* Teal color for loading text */  
-}  
-
-.error {  
-  font-size: 1.5rem;   
-  color: #e74c3c; /* Red color for error text */  
-}  
-
-.clinic-list {  
-  list-style-type: none; /* Remove default list style */  
-  padding: 0;  
-}  
-
-.clinic-item {  
-  border-bottom: 1px solid #ddd; /* Light gray line */  
-  padding: 10px;  
-}  
-
-.clinic-name {  
-  font-size: 1.25rem;   
-  color: #2980b9; /* Blue color for clinic names */  
-}  
-findnearbyheader {  
-  background-color: #F5F5F5; /* Same header color as the dashboard */  
-  padding: 20px;  
-  display: flex;  
-  align-items: center;  
-  justify-content: center;  
-  border-radius: 8px;  
-  width: 90%;
-  color: #000;
-  margin-left: 4%;
-}  
-
-.clinic-address {  
-  font-size: 1rem;   
-  color: #7f8c8d; /* Gray color for addresses */  
-}
-/*Find nearby clinic ends*/
 
 /* Profile styles begin */
   
@@ -1287,3 +1232,107 @@ button {
     margin: 0 10px; /* Space between buttons */  
 }
 /*results saved styles end*/
+
+/*product rec styles begin*/
+
+/* Container for Product Recommendations Page */  
+.product-recommendation-container {  
+  max-width: 1200px;  
+  margin: auto;  
+  padding: 20px;  
+}  
+
+/* Header Styles */  
+.product-recommendation-header {  
+  text-align: center;  
+  margin-bottom: 30px;  
+}  
+
+.product-recommendation-header h2 {  
+  font-size: 2.5rem;  
+  color: #333;  
+}  
+
+/* Products Section Styles */  
+.products {  
+  display: grid;  
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));  
+  gap: 20px;  
+}  
+
+/* Product Card Styles */  
+.product-card {  
+  background: white;  
+  border: 1px solid #ddd;  
+  border-radius: 8px;  
+  overflow: hidden;  
+  transition: transform 0.2s;  
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
+}  
+
+.product-card:hover {  
+  transform: translateY(-5px);  
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);  
+}  
+
+/* Product Image */  
+.product-image {  
+  width: 100%;  
+  height: 150px;  
+  object-fit: cover;  
+}  
+
+/* Product Info Styles */  
+.product-info {  
+  padding: 15px;  
+}  
+
+.product-info h3 {  
+  font-size: 1.5rem;  
+  color: #333;  
+  margin: 10px 0;  
+}  
+
+.product-info p {  
+  color: #666;  
+}  
+
+/* Button Styles */  
+.action-button-container {  
+  text-align: center;  
+  margin-top: 30px;  
+}  
+
+
+
+/* Responsive Styles */  
+@media (max-width: 768px) {  
+  .products {  
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));  
+  }  
+
+  .submit-button {  
+      width: 100%;  
+      padding: 12px;  
+  }  
+}
+/*product rec styles end*/
+
+/*unified quiz form styles begin*/
+.navigation-button {
+  margin-top: 20px;
+  text-align: center;  /* Center-align the button */
+}
+
+.navigation-button button {
+  padding: 10px 20px;
+  font-size: 23px;
+  background-color: #F2C94C; /* Button color */
+  color: rgb(0, 0, 0);       /* Text color */
+  border: none;              /* No border */
+  border-radius: 30px;       /* Rounded corners */
+  cursor: pointer;           /* Pointer cursor */
+  transition: background-color 0.3s; /* Smooth background color transition */
+  width: 200px;
+}
+/*unified quiz form styles end*/

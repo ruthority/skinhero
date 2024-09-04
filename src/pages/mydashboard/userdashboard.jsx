@@ -39,10 +39,11 @@ const UserDashboard = () => {
                     <span>Skin Test Results</span>
                     <div className="icon-history" />
                 </Link>
-                <Link to="/mydashboard/findnearbyclinic" className="button">
-                    <span>Find Clinic</span>
+                <Link to="/quiz/unifiedquizform" className="button">
+                    <span>Product Recommendations</span>
                     <div className="icon-history" />
                 </Link>
+
             </div>
         </div>
     );

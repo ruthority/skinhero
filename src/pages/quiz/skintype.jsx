@@ -1,8 +1,9 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '/src/index.css'; // Adjust path as necessary  
 
-const SkinTypeTest = () => {
+const SkinTypeTest = ({ showSubmitButton = true, onResponsesChange }) => {
     const navigate = useNavigate();
     const [responses, setResponses] = useState({
         skinFeel: '',
@@ -12,10 +13,12 @@ const SkinTypeTest = () => {
     });
 
     const handleChange = (question, answer) => {
-        setResponses({
+        const updatedResponses = {
             ...responses,
             [question]: answer,
-        });
+        };
+        setResponses(updatedResponses);
+        onResponsesChange(updatedResponses);  // Update parent component state
     };
 
     const handleSubmit = (event) => {
@@ -35,7 +38,7 @@ const SkinTypeTest = () => {
             </ul>
 
             <form onSubmit={handleSubmit}>
-                <h3>  How does your skin feel?</h3>
+                <h3>How does your skin feel?</h3>
                 <div className="button-group">
                     <button
                         type="button"
@@ -108,7 +111,9 @@ const SkinTypeTest = () => {
                 </div>
 
                 <div className="submit-button-container">
-                    <button type="submit" className="submit-button-st">Submit</button>
+                    {showSubmitButton && (
+                        <button type="submit" className="submit-button-st">Submit</button>
+                    )}
                 </div>
             </form>
         </div>

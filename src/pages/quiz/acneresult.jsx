@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom'; // Import useNavigate  
 import { db } from "../../firebase"; // Import Firestore instance  
 import { doc, setDoc, collection, query, orderBy, limit, getDocs } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth'; // Import Firebase Auth  
 import '/src/index.css'; // Ensure this path is correct for your project's file structure  
 
 export default function AcneResult() {
+    const navigate = useNavigate(); // Initialize navigate  
     const location = useLocation();
     const { selectedAcne } = location.state || { selectedAcne: [] };
     const [lastResults, setLastResults] = useState([]);
@@ -17,27 +18,27 @@ export default function AcneResult() {
     const results = {
         'whiteheads': {
             name: 'Whiteheads',
-            description: 'Whiteheads are closed clogged pores that appear as small, white bumps on the skin. They often occur due to excess oil and dead skin cells clogging pores.',
+            description: 'Whiteheads are closed clogged pores that appear as small, white bumps on the skin.',
         },
         'blackheads': {
             name: 'Blackheads',
-            description: 'Blackheads are open clogged pores that appear as small black spots on the skin. They form when a pore is partially clogged with oil and dead skin.',
+            description: 'Blackheads are open clogged pores that appear as small black spots on the skin.',
         },
         'papules': {
             name: 'Papules',
-            description: 'Papules are small red or pink bumps on the skin that can be tender to the touch. They occur when hair follicles become inflamed or infected.',
+            description: 'Papules are small red or pink bumps on the skin that can be tender to the touch.',
         },
         'pustules': {
             name: 'Pustules',
-            description: 'Pustules are similar to papules but contain pus. They are often red at the base and can be found on the face, back, and other areas.',
+            description: 'Pustules are similar to papules but contain pus.',
         },
         'nodules': {
             name: 'Nodules',
-            description: 'Nodules are large, painful lumps that form deep within the skin. They can be hard to the touch and may take a long time to heal.',
+            description: 'Nodules are large, painful lumps that form deep within the skin.',
         },
         'cystic': {
             name: 'Cystic Acne',
-            description: 'Cystic acne is a severe form of acne that is characterized by painful, fluid-filled cysts. It requires medical treatment to manage.',
+            description: 'Cystic acne is characterized by painful, fluid-filled cysts.',
         },
     };
 
@@ -53,9 +54,9 @@ export default function AcneResult() {
         };
 
         try {
-            // Save the result in Firestore under the user's document  
             await setDoc(doc(db, "users", userId, "acneResults", Date.now().toString()), assessmentResult);
             alert('Results saved successfully!');
+
         } catch (error) {
             console.error("Error saving results: ", error);
             alert('Error saving results!');
@@ -64,7 +65,7 @@ export default function AcneResult() {
 
     useEffect(() => {
         const fetchLastResult = async () => {
-            if (!userId) return; // Exit if userId is not available  
+            if (!userId) return;
 
             try {
                 const resultsQuery = query(
@@ -116,15 +117,8 @@ export default function AcneResult() {
             </div>
 
             <div className="action-button-container-acne">
-                <button
-                    className="submit-button"
-                    onClick={handleSave}
-                >
-                    Save
-                </button>
+                <button className="submit-button" onClick={handleSave}>Save</button>
             </div>
-
-
         </div>
     );
 }

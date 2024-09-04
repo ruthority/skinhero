@@ -6,7 +6,7 @@ import '/src/index.css';
 import hyperpigmentationImage from '/src/pih.jpg';
 import melasmaImage from '/src/melasma.jpg';
 
-export default function QuizHyperpigmentationPage() {
+const QuizHyperpigmentationPage = ({ showSubmitButton = true, onSelectionChange }) => {
     const [selectedHyperpigmentation, setSelectedHyperpigmentation] = useState([]);
     const navigate = useNavigate(); // Initialize navigate  
 
@@ -16,10 +16,13 @@ export default function QuizHyperpigmentationPage() {
     ];
 
     const handleSelect = (id) => {
-        if (selectedHyperpigmentation.includes(id)) {
-            setSelectedHyperpigmentation(selectedHyperpigmentation.filter(item => item !== id));
-        } else {
-            setSelectedHyperpigmentation([...selectedHyperpigmentation, id]);
+        const newSelection = selectedHyperpigmentation.includes(id)
+            ? selectedHyperpigmentation.filter(item => item !== id)
+            : [...selectedHyperpigmentation, id];
+
+        setSelectedHyperpigmentation(newSelection);
+        if (onSelectionChange) {
+            onSelectionChange(newSelection);
         }
     };
 
@@ -31,7 +34,7 @@ export default function QuizHyperpigmentationPage() {
     return (
         <div className="quiz-hyperpigmentation-page">
             <header className="hyperpigmentation-header">
-                <h1 className='hyperpigmentation-title'>Hyperpigmentation</h1>
+                <h1 className='hyperpigmentation-title'>Hyperpigmentation Quiz</h1>
             </header>
 
             <p className="select-text">Select all that apply:</p>
@@ -47,9 +50,15 @@ export default function QuizHyperpigmentationPage() {
                     </div>
                 ))}
             </div>
-            <button className="hyperpigmentation-submit-button" onClick={handleSubmit}>
-                Submit
-            </button>
+
+            {/* Conditionally render the submit button */}
+            {showSubmitButton ? (
+                <button className="hyperpigmentation-submit-button" onClick={handleSubmit}>
+                    Submit
+                </button>
+            ) : null}
         </div>
     );
-}
+};
+
+export default QuizHyperpigmentationPage;

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom'; // Import useNavigate  
 import { db } from "../../firebase"; // Import Firestore instance  
 import { doc, setDoc, collection, query, orderBy, limit, getDocs } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth'; // Import Firebase Auth  
 import '/src/index.css'; // Ensure this path is correct for your project's file structure  
 
 export default function HyperpigmentationResult() {
+    const navigate = useNavigate(); // Initialize navigate  
     const location = useLocation();
     const { selectedHyperpigmentation } = location.state || { selectedHyperpigmentation: [] };
     const [lastResults, setLastResults] = useState([]);
@@ -21,7 +22,7 @@ export default function HyperpigmentationResult() {
         },
         'post-inflammatory': {
             name: 'Post Inflammatory Hyperpigmentation',
-            description: 'Post inflammatory hyperpigmentation (PIH) is a darkening of the skin that occurs after an injury or inflammation. It often resolves on its own, but treatments can help speed up the process.',
+            description: 'Post inflammatory hyperpigmentation (PIH) is a darkening of the skin that occurs after an injury or inflammation.',
         },
     };
 
@@ -37,9 +38,9 @@ export default function HyperpigmentationResult() {
         };
 
         try {
-            // Save the result in Firestore under the user's document  
             await setDoc(doc(db, "users", userId, "hyperpigmentationResults", Date.now().toString()), assessmentResult);
             alert('Results saved successfully!');
+
         } catch (error) {
             console.error("Error saving results: ", error);
             alert('Error saving results!');
@@ -48,7 +49,7 @@ export default function HyperpigmentationResult() {
 
     useEffect(() => {
         const fetchLastResult = async () => {
-            if (!userId) return; // Exit if userId is not available  
+            if (!userId) return;
 
             try {
                 const resultsQuery = query(
@@ -100,12 +101,7 @@ export default function HyperpigmentationResult() {
             </div>
 
             <div className="action-button-container-hyper">
-                <button
-                    className="submit-button"
-                    onClick={handleSave}
-                >
-                    Save
-                </button>
+                <button className="submit-button" onClick={handleSave}>Save</button>
             </div>
         </div>
     );

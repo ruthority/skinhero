@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate  
+import { useNavigate } from 'react-router-dom';
 import '/src/index.css';
 
 // Import images  
@@ -10,9 +10,9 @@ import pustule from '/src/pustule.jpg';
 import nodules from '/src/nodules.jpg';
 import cystic from '/src/cystic.jpg';
 
-export default function QuizAcnePage() {
+const QuizAcnePage = ({ showSubmitButton = true, onSelectionChange }) => {
     const [selectedAcne, setSelectedAcne] = useState([]);
-    const navigate = useNavigate(); // Initialize useNavigate  
+    const navigate = useNavigate();
 
     const acneTypes = [
         { name: 'Whiteheads', image: whiteheads, id: 'whiteheads' },
@@ -24,15 +24,17 @@ export default function QuizAcnePage() {
     ];
 
     const handleSelect = (id) => {
-        if (selectedAcne.includes(id)) {
-            setSelectedAcne(selectedAcne.filter(acne => acne !== id));
-        } else {
-            setSelectedAcne([...selectedAcne, id]);
+        const newSelection = selectedAcne.includes(id)
+            ? selectedAcne.filter(acne => acne !== id)
+            : [...selectedAcne, id];
+
+        setSelectedAcne(newSelection);
+        if (onSelectionChange) {
+            onSelectionChange(newSelection);
         }
     };
 
     const handleSubmit = () => {
-        // Navigate to /acneresult and pass selected acne types in state  
         navigate('/quiz/acneresult', { state: { selectedAcne } });
     };
 
@@ -49,15 +51,21 @@ export default function QuizAcnePage() {
                         key={acne.id}
                         className={`acne-item ${selectedAcne.includes(acne.id) ? 'active' : ''}`}
                         style={{ backgroundImage: `url(${acne.image})` }}
-                        onClick={() => handleSelect(acne.id)} // Make each image clickable  
+                        onClick={() => handleSelect(acne.id)}
                     >
                         <span className="acne-label">{acne.name}</span>
                     </div>
                 ))}
             </div>
-            <button className="submit-button" onClick={handleSubmit}>
-                Submit
-            </button>
+
+            {/* Conditionally render the submit button */}
+            {showSubmitButton && (
+                <button className="submit-button" onClick={handleSubmit}>
+                    Submit
+                </button>
+            )}
         </div>
     );
-}
+};
+
+export default QuizAcnePage;

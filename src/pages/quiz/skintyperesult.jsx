@@ -1,19 +1,19 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation here  
+import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation and useNavigate   
 import { getAuth } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from "../../firebase"; // Adjust the path if necessary  
 import '/src/index.css'; // Adjust path as necessary  
 
 const SkinTypeResult = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Initialize navigate   
     const location = useLocation(); // Get location  
     const auth = getAuth();
     const currentUser = auth.currentUser;
     const userId = currentUser ? currentUser.uid : null;
 
-    const { responses } = location.state || { responses: {} }; // Handle possible undefined state  
-    let skinType;
+    const { responses, selectedHyperpigmentation, selectedAcne } = location.state || { responses: {}, selectedHyperpigmentation: [], selectedAcne: [] }; // Handle possible undefined state  
+    let skinType = '';
     let description = '';
 
     const { skinFeel, tissueResidue, itchyInflamed, cheeksTight } = responses;
@@ -51,6 +51,8 @@ const SkinTypeResult = () => {
         try {
             await setDoc(doc(db, "users", userId, "skinTypeResults", Date.now().toString()), skinTypeResult);
             alert('Results saved successfully!');
+
+
         } catch (error) {
             console.error("Error saving results: ", error);
             alert('Error saving results!');
@@ -65,7 +67,7 @@ const SkinTypeResult = () => {
             <div className="acne-result-container">
                 <h3 className="skin-type">Based on your selections, your skin type is: {skinType}</h3>
                 <p className="description">{description}</p>
-                <p className="user-selections">You selected: {JSON.stringify(responses)}</p> {/* This needs to be defined correctly */}
+                <p className="user-selections">You selected: {JSON.stringify(responses)}</p>
             </div>
             <div className="action-button-container">
                 <button className="submit-button" onClick={handleSave}>Save</button>
