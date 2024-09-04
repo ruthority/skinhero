@@ -19,7 +19,7 @@ import AcneResult from "./pages/quiz/acneresult";
 import AcneSavedResult from "./pages/quiz/acnesavedresult";
 import HyperpigmentationResult from "./pages/quiz/hyperpigmentationresult";
 import HyperpigmentationSavedResult from "./pages/quiz/hyperpigmentationsavedresult";
-import ProductRecommendations from "./pages/quiz/productrecommendations"
+import ProductRecommendation from "./pages/quiz/productrecommendations"
 import UnifiedQuizForm from "./pages/quiz/unifiedquizform";
 
 const router = createBrowserRouter([
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       { path: "acnesavedresult", element: <AcneSavedResult /> },
       { path: "hyperpigmentationsavedresult", element: <HyperpigmentationSavedResult /> },
       { path: "skintypesavedresult", element: <SkinTypeSavedResult /> },
-      { path: "productrecommendations", element: <ProductRecommendations /> },
+      { path: "productrecommendations", element: <ProductRecommendation /> },
       { path: "unifiedquizform", element: <UnifiedQuizForm /> },
 
     ],

@@ -19,16 +19,20 @@ const SkinTypeResult = () => {
     const { skinFeel, tissueResidue, itchyInflamed, cheeksTight } = responses;
 
     // Determine skin type based on responses  
-    if (skinFeel === 'tight' && tissueResidue === 'no' && itchyInflamed === 'no' && cheeksTight === 'no') {
+
+    if (skinFeel === 'tight' && tissueResidue === 'no' && itchyInflamed === 'no' && cheeksTight === 'yes') {
         skinType = 'Dry Skin';
         description = 'Your skin lacks moisture and feels tight. It may also appear flaky or rough.';
-    } else if (skinFeel === 'tight' && tissueResidue === 'yes' && (itchyInflamed === 'yes' || cheeksTight === 'yes')) {
+    } else if (skinFeel === 'tight' && tissueResidue === 'no' && itchyInflamed === 'yes' && cheeksTight === 'no') {
+        skinType = 'Sensitive Skin';
+        description = 'Your skin is prone to redness, itching, or burning. It is easily irritated by environmental factors or certain products.';
+    } else if (skinFeel === 'comfortable' && tissueResidue === 'yes' && itchyInflamed === 'no' && cheeksTight === 'yes') {
         skinType = 'Combination Skin';
         description = 'Your skin has both oily and dry areas. It is dry in some regions and oily in the T-zone (forehead, nose, chin).';
-    } else if (skinFeel === 'tight' && tissueResidue === 'no' && (itchyInflamed === 'yes' || cheeksTight === 'yes')) {
+    } else if (skinFeel === 'comfortable' && tissueResidue === 'no' && itchyInflamed === 'no' && cheeksTight === 'no') {
         skinType = 'Normal Skin';
-        description = 'Your skin is generally well-balanced with no significant issues. It feels comfortable and has an even tone.';
-    } else if (skinFeel === 'oily' || tissueResidue === 'yes' || itchyInflamed === 'yes' || cheeksTight === 'yes') {
+        description = 'Your skin is generally well-balanced with no significant issues. It feels comfortable.';
+    } else if (skinFeel === 'comfortable' && tissueResidue === 'yes' && itchyInflamed === 'no' && cheeksTight === 'no') {
         skinType = 'Oily Skin';
         description = 'Your skin produces excess oil and may appear shiny. You may also experience larger pores and breakouts.';
     } else {

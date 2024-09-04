@@ -40,7 +40,7 @@ const QuizAcnePage = ({ showSubmitButton = true, onSelectionChange }) => {
 
     return (
         <div className="quiz-acne-page">
-            <header className="custom-header">
+            <header className="acne-header">
                 <h1 className='acne-title'>Acne Assessment</h1>
             </header>
 
