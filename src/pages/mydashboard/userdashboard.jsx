@@ -28,7 +28,7 @@ const UserDashboard = () => {
             </div>
             <div className="button-container">
                 <Link to="/mydashboard/Diagnosis" className="button">
-                    <span>Take Skin Tests</span>
+                    <span>Skin Test</span>
                     <div className="icon-diagnosis" />
                 </Link>
                 <Link to="/mydashboard/Consultation" className="button">
@@ -36,7 +36,7 @@ const UserDashboard = () => {
                     <div className="icon-consultant" />
                 </Link>
                 <Link to="/mydashboard/Results" className="button">
-                    <span>Past Assessment Results</span>
+                    <span>Skin Test Results</span>
                     <div className="icon-history" />
                 </Link>
                 <Link to="/mydashboard/findnearbyclinic" className="button">

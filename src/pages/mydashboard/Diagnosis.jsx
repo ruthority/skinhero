@@ -6,7 +6,7 @@ export default function Diagnosis() {
     return (
         <div className="diagnosis-container">
             <header className="header">
-                <h1 className="diagnosis-title">Diagnosis</h1>
+                <h1 className="diagnosis-title">Skin Test</h1>
             </header>
             <div className="diagnosis-content">
                 <h2 className="assessment-title">Select Assessment Type</h2>

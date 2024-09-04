@@ -74,7 +74,7 @@ export default function AcneSavedResult() {
 
     return (
         <div className="acne-result-page">
-            <div className="results-header">
+            <div className="acne-result-header">
                 <h1>Acne Assessment Results</h1>
             </div>
             <div className="acne-result-container">

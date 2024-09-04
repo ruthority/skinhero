@@ -6,7 +6,7 @@ export default function Results() {
     return (
         <div className="results-container">
             <div className="results-header">
-                <h1>Results</h1>
+                <h1>Skin Test Results</h1>
             </div>
             <div className="results-content">
                 <h2 className="results-title">Select Result Type</h2>

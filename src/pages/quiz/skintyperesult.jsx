@@ -1,17 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation here  
 import { getAuth } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from "../../firebase"; // Adjust the path if necessary
-import '/src/index.css'; // Adjust path as necessary
+import { db } from "../../firebase"; // Adjust the path if necessary  
+import '/src/index.css'; // Adjust path as necessary  
 
 const SkinTypeResult = () => {
     const navigate = useNavigate();
+    const location = useLocation(); // Get location  
     const auth = getAuth();
     const currentUser = auth.currentUser;
     const userId = currentUser ? currentUser.uid : null;
 
-    const location = useLocation();
     const { responses } = location.state || { responses: {} }; // Handle possible undefined state  
     let skinType;
     let description = '';
@@ -65,7 +65,7 @@ const SkinTypeResult = () => {
             <div className="acne-result-container">
                 <h3 className="skin-type">Based on your selections, your skin type is: {skinType}</h3>
                 <p className="description">{description}</p>
-                <p className="user-selections">You selected: {selectedOptions}</p>
+                <p className="user-selections">You selected: {JSON.stringify(responses)}</p> {/* This needs to be defined correctly */}
             </div>
             <div className="action-button-container">
                 <button className="submit-button" onClick={handleSave}>Save</button>
