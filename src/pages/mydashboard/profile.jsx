@@ -39,7 +39,7 @@ const Profile = () => {
                         <strong>Email:</strong> {user.email}
                     </div>
 
-                    {/* You can add more fields here */}
+
                 </div>
             ) : (
                 <div className="loading-message">Loading user information...</div>
